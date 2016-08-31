@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="GBK">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
+	<title>Phaser</title>
+    <style>
+        *{margin:0;padding:0}
+        html, body
+        {
+            -webkit-text-size-adjust:none;
+            overflow: hidden;
+            height:100%;
+            margin: 0px 0px 1px 0px;
+            background-color: #ff0
+        }
+        body{
+        	width:100%;
+        	background-image: url(assets/game_bg.jpg);
+        	background-size: 100% 100%;
+        }
+        #MainMenu{
+        	width:100%;
+        	height:100%;
+        	position: absolute;
+        	left:0;
+        	top:0;
+        	background-image: url(assets/bg.jpg);
+        	background-size: 100% 100%;
+        }
+        .select-btn{
+        	width:4.45rem;
+        	height:4.45rem;
+        	background-size: 4.45rem 4.45rem;
+        	position: absolute;
+        	bottom:3rem
+        }
+        #boy{
+        	background-image: url(assets/boy.png);
+        	left:3rem
+        }
+        #girl{
+        	background-image: url(assets/girl.png);
+        	right:3rem
+        }
+        
+    </style>
+    <script>
+    (function(doc,win){var docEl=doc.documentElement,resizeEvt='orientationchange'in window?'orientationchange':'resize',recalc=function(){var clientWidth=docEl.clientWidth;if(!clientWidth)return;docEl.style.fontSize=20*(clientWidth/375)+'px'};if(!doc.addEventListener)return;win.addEventListener(resizeEvt,recalc,false);doc.addEventListener('DOMContentLoaded',recalc,false)})(document,window);
+    </script>
+    <script src="zepto.min.js"></script>
+    <script src="phaser.2.4.7.min.js"></script>
+    <script src="Boot.js"></script>
+    <script src="Preloader.js"></script>
+    <script src="UI.js"></script>
+    <script src="Game.js"></script>
+</head>
+<body>
+	<div id="game"></div>
+	<div id="MainMenu">
+		<div id="boy" data-sex='boy' class="select-btn"></div>
+		<div id="girl" data-sex='girl' class="select-btn"></div>
+	</div>
+<script>
+	var share = false;
+	
+	var sex = '';
+
+
+	document.getElementById('game').style.height = document.body.clientHeight + 'px';
+    var game = new Phaser.Game(1100, 1769, Phaser.CANVAS, 'game',null,true);
+  		
+  		$('.select-btn').on('touchend',function(){
+			sex = $(this).attr('data-sex');
+			
+			$('#MainMenu').hide()
+			
+			
+			game.state.add('Boot', MyGame.Boot);
+		    game.state.add('Preloader', MyGame.Preloader);
+		    game.state.add('Game', MyGame.Game);
+		    game.state.start('Boot');
+		})
+
+</script>
+<!--<script src="inpMusic.js"></script>-->
+</body>
+</html>

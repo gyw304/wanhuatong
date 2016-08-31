@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="GBK">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
+	<title>share</title>
+    <style>
+        *{margin:0;padding:0}
+        html, body
+        {
+            -webkit-text-size-adjust:none;
+            overflow: hidden;
+            height:100%;
+            margin: 0px 0px 1px 0px;
+            background-color: #0e1736
+        }
+        
+        #cover{
+            position: absolute;
+            left:0;
+            top:0;
+            right:0;
+            bottom:0;
+            background-color: rgba(0,0,0,.7);
+            display: none;
+        }
+        #login{
+            width:11.6rem;
+            height:11.275rem;
+            background-image: url('assets/crm-warp.jpg');
+            background-size: 11.6rem 11.275rem;
+            position: absolute;
+            left:50%;
+            top:50%;
+            margin-left:-5.8rem;
+            margin-top:-7.6375rem;
+        }
+        #login input.ipt{
+            width:8rem;
+            height:1.6rem;
+            position: absolute;
+            border: none;
+            background-color: #ffffff;
+            color:#000;
+            font-size:.7rem;
+            line-height: 1.3rem;
+            padding-left:.5rem;
+        }
+        #name{
+            left:1.6rem;
+            top:3.75rem
+        }
+        #phone{
+            left:1.6rem;
+            top:5.85rem
+        }
+        button{
+            width:9.075rem;
+            height:2.675rem;
+            background-image: url('assets/sub-btn.png');
+            background-size: 9.075rem 2.675rem;
+            position: absolute;
+            left:1.2rem;
+            top:8rem;
+            border: none;
+            background-color: transparent;
+        }
+
+        
+    </style>
+    <script>
+    (function(doc,win){var docEl=doc.documentElement,resizeEvt='orientationchange'in window?'orientationchange':'resize',recalc=function(){var clientWidth=docEl.clientWidth;if(!clientWidth)return;docEl.style.fontSize=20*(clientWidth/320)+'px'};if(!doc.addEventListener)return;win.addEventListener(resizeEvt,recalc,false);doc.addEventListener('DOMContentLoaded',recalc,false)})(document,window);
+    </script>
+    <script src="phaser.2.4.7.min.js"></script>
+    <script src="Boot.js"></script>
+    <script src="Preloader.js"></script>
+    <script src="UI.js"></script>
+    <script src="share.js"></script>
+</head>
+<body>
+	<div id="game"></div>
+	<div id="erweima" style="position: absolute;bottom:2%;left:50%;margin-left:-48%"><img src="assets/erweima.png" width="96%" alt="" /></div>
+	
+	<div id="cover">
+        <div id="login">
+            <div class="frm"><input type="text" id="name" class="ipt" placeholder='请输入姓名'/></div>
+            <div class="frm"><input type="text" id="phone" class="ipt" placeholder='请输入电话号码'/></div>
+            <button id="subBtn"></button>
+        </div>
+    </div>
+	
+<script>
+	
+	var share = true;
+	
+	
+	var sex = 'boy';
+	
+	var data = [
+		{
+			x : -9999,  //x:797  width:129
+			y : -9999 //y:1317  height :129
+		},
+		{
+			x : -9999,
+			y : -9999
+		},
+		{
+			x : (807 - 800 - 279/2)*2,
+			y : (1277- 1310 - 108/2)*2
+		}
+		/*{x : 0,y : 0},
+		{x : 0,y : 0},
+		{x : 0,y : 0},
+		{x : 0,y : 0}*/
+	]
+
+	
+	
+	
+
+	document.getElementById('game').style.height = document.body.clientHeight + 'px';
+    var game = new Phaser.Game(640, 1029, Phaser.CANVAS, 'game',null,true);
+  		game.state.add('Boot', MyGame.Boot);
+	    game.state.add('Preloader', MyGame.Preloader);
+	    game.state.add('share', MyGame.share);
+	    game.state.start('Boot');
+  		
+  		
+	    
+	document.getElementById('subBtn').addEventListener('touchend',function(){
+        document.getElementById('cover').style.display = 'none';
+    },false)
+		
+	
+</script>
+<!--<script src="inpMusic.js"></script>-->
+</body>
+</html>
