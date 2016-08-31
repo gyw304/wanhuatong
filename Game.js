@@ -123,7 +123,7 @@ MyGame.Game.prototype = {
 				if(event.x >= 600  && event.y >= game.world.height - 350)
 				{
 					//alert('µÈ´ýÐûÅô')
-					console.log(convertCanvasToImage(document.getElementById('oCanvas')))
+					//console.log(convertCanvasToImage(document.getElementById('oCanvas')))
 					
 					/*var crop_canvas = document.getElementById('oCanvas');
 					
